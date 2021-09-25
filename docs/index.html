@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+      body { margin:0; padding:0; }
+   
+      .wrap 
+	  {
+          width:auto;
+      
+          margin:0 auto;
+      }
+
+
+
+      .footer {
+          height:auto;
+          margin-top:10px;
+          margin-bottom:10px;
+          display: flex;
+          justify-content: center;
+          padding: 5px;
+          background-color: #dcdcdc;
+          color: #000;
+          width:70%;
+          }
+      
+      .clear {
+          clear:both;
+      }
+      
+      }
+
+    </style>
+
+
+  </head>
+
+  
+  <body>
+   
+    <div class="wrap" align="center" style="width:500px;border:2px solid black; border-radius:15px;margin-top:150px">
+
+        <div class="container">
+          
+          <div class="row" style="border-radius:15px;background-color:rgba(0, 0, 139, 0.2);">
+            <h1>TC Kimlik Numarası Doğrulama</h1>
+          </div>
+          
+          <div class="row bg-light" style="height:150px">
+            <form>
+              <div class="form-row my-3" style="margin:auto">
+                  <label for="tc" style="margin:auto"><b>TC Kimlik Numarasının İlk 9 Hanesini Giriniz</b></label>
+                  
+                  <div class="input-group input-group-lg my-2" style="width:40%; margin:auto">
+                    <input type="text" class="form-control" id="tc" placeholder="TCKN" maxlength="9" autocomplete="off">
+                    <div class="input-group-append">
+                      <div class="input-group-text" id="sonIkiHane"></div>
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="form-row">
+                <span class="mx-auto" style="color:red" id="not"></span>
+              </div>
+              
+            </form>
+          </div>
+  
+        <div class="footer">
+          <div>
+            <span style="font-family:sans-serif"><b>© 2020 Dr. Muhammet Yunus TUNCA</b></span>
+          </div>        
+        </div><!-- Alt bilgi -->
+        
+    </div><!-- wrap bütün sütunları, satırları sar -->
+    </div>
+    <div id="loading" class="d-flex justify-content-center align-items-center invisible">
+      <div class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+ 
+   
+   <script>
+      
+      tc.addEventListener("input",sorgula)
+      
+      function sorgula(){
+        
+        not.textContent = "";
+        
+        if(!isNaN(tc.value)){
+        
+          if(tc.value.length == 9){
+        
+            sonIkiHane.textContent = tcDogrula(tc.value);
+          
+          }else{
+        
+            sonIkiHane.textContent = "";
+                 
+          }
+        
+        }else{
+        
+          not.textContent = "TC sadece sayılardan oluşmalıdır"
+          
+        }
+      
+      }
+      function tcDogrula(numara) {
+      
+        var bir = parseInt(numara.substring(0, 1));
+        var iki = parseInt(numara.substring(1, 2));
+        var uc = parseInt(numara.substring(2, 3));
+        var dort = parseInt(numara.substring(3, 4));
+        var bes = parseInt(numara.substring(4, 5));
+        var alti = parseInt(numara.substring(5, 6));
+        var yedi = parseInt(numara.substring(6, 7));
+        var sekiz = parseInt(numara.substring(7, 8));
+        var dokuz = parseInt(numara.substring(8, 9));
+        
+        var on = ((bir + uc + bes + yedi + dokuz)*7 + 200 - (iki + dort + alti +sekiz)) % 10;
+        
+        var onbir = (bir + iki + uc + dort + bes + alti + yedi + sekiz + dokuz + on) % 10;    
+        
+        return on.toString() + onbir.toString()
+
+      }
+      
+
+     
+   </script>
+   
+   
+
+
+  </body>
+</html>
