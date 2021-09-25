@@ -49,8 +49,8 @@
 
         <div class="container">
           
-          <div class="row" style="border-radius:15px 15px 0 0;background-color:rgba(0, 0, 139, 0.2);">
-            <h1>TC Kimlik Numarası Doğrulama</h1>
+          <div class="row" style="border-radius:15px 15px 0 0;background-color:rgb(255 135 29 / 90%);">
+            <h2 class="mx-auto">TC Kimlik Numarası Doğrulama</h2>
           </div>
           
           <div class="row bg-light" style="height:150px">
@@ -59,7 +59,7 @@
                   <label for="tc" style="margin:auto"><b>TC Kimlik Numarasının İlk 9 Hanesini Giriniz</b></label>
                   
                   <div class="input-group input-group-lg my-2" style="width:40%; margin:auto">
-                    <input type="text" class="form-control" id="tc" placeholder="TCKN" maxlength="9" autocomplete="off">
+                    <input type="text" class="form-control" id="tc" placeholder="TCKN" maxlength="9" autocomplete="off" pattern="[1-9][0-9]{8}">
                     <div class="input-group-append">
                       <div class="input-group-text" id="sonIkiHane"></div>
                     </div>
