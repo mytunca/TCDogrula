@@ -6,12 +6,11 @@ document.querySelector("#tc").oninput = () => {
   sonIkiHane.textContent = "";
 
   if (!isNaN(tc.value)) {
-
     if (tc.value.length == 9) sonIkiHane.textContent = tcDogrula(tc.value);
   }
   else { not.textContent = "TC sadece sayılardan oluşmalıdır" }
-
 }
+
 function tcDogrula(numara) {
   const dizi = []
   for (let i = 0; i < 9; i++) {
